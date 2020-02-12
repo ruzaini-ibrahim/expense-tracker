@@ -71,7 +71,7 @@
     };
 
     var myPie = new Chart(document.getElementById("exampleChartjsPie").getContext("2d"), {
-      type: 'pie',
+      type: 'doughnut',
       data: pieData,
       options: {
         responsive: true

@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('home', function () {
+    return view('home');
+});
+
 Route::prefix('expense')->group(function(){
 	Route::get('/',function(){
 		return view('expense');
@@ -35,6 +39,18 @@ Route::prefix('custom')->group(function(){
 	Route::post('/add', 'CustomController@addGroup');
 	Route::any('/delete/{id}', 'CustomController@deleteGroup');
 	Route::any('/edit', 'CustomController@editGroup');
+});
+
+Route::prefix('user_management')->group(function(){
+	Route::prefix('permission')->group(function(){
+		Route::get('/', function(){
+			return view('rolePermission/permissionView');
+		});
+		Route::get('data','RolePermissionController@permissionData');
+		Route::post('new','RolePermissionController@permissionNew');
+		Route::get('{id}/delete','RolePermissionController@permissionDelete');
+		Route::post('edit','RolePermissionController@permissionEdit');
+	});
 });
 
 Auth::routes();

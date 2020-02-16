@@ -434,7 +434,7 @@
 <script>
     $(function() {
         $('#transTable').on('click','.btnEdit', function(){
- 
+        
             var index = $(this).val();
             $('.id').val(index);
             $('.edit_subject').val($('.subject_'+index).val());

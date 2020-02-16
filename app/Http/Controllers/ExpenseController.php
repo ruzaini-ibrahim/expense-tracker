@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Yajra\Datatables\Datatables;
+use Datatables;
 
 use Auth;
 use DB;
@@ -59,7 +59,8 @@ class ExpenseController extends Controller
      public function viewExpense(Request $request)
     {
         $expense = Expense::LeftJoin('customs','expenses.subject','=','customs.id')
-                    ->select('expenses.id','customs.subject','expenses.comment','amount','expenses.created_at','spend_at as dateSpend');
+                    ->select('expenses.id','customs.subject','expenses.comment','amount','expenses.created_at','spend_at as dateSpend')
+                    ->orderby('expenses.created_at','desc');
                     
 
         if (request()->has('amount')) {
